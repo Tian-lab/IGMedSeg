@@ -1,0 +1,5 @@
+base_res_url = "../img/"
+background_image_filename = base_res_url + "background.jpg"
+button = base_res_url + "new_button.png"
+ex_img = base_res_url + "image1.png"
+ex_img_gt = base_res_url + "ground_truth1.json"
