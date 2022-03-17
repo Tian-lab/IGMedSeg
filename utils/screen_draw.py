@@ -1,8 +1,3 @@
-"""
-@Time 2020/2/20
-@Author Rocky
-@Note 界面显示辅助函数
-"""
 import pygame
 import cv2
 from common.common import *
@@ -21,10 +16,10 @@ def show_and_cal(screen, current_img, contour, control_pos):
     else:
         draw_multi_points(screen, current_img, control_pos, color=(255, 0, 0), clear=True)
         draw_pred_result(screen, current_img, contour, color=(255, 0, 0), clear=False)
-    if os.path.exists(GT_JSON_PATH[-1]):
-        poly = json.load(open(f"{GT_JSON_PATH[-1]}"))["polys"][0]["poly"]  # GT
-        print("多边形精度(IoU)=", metric.calc_iou_with_polygon(np.array(poly), np.array(control_pos)))
-        print("样条曲线精度(IoU)=", metric.calc_iou_with_polygon(np.array(poly), np.array(contour)))
+    # if os.path.exists(GT_JSON_PATH[-1]):
+    #     poly = json.load(open(f"{GT_JSON_PATH[-1]}"))["polys"][0]["poly"]  # GT
+        # print("多边形精度(IoU)=", metric.calc_iou_with_polygon(np.array(poly), np.array(control_pos)))
+        # print("样条曲线精度(IoU)=", metric.calc_iou_with_polygon(np.array(poly), np.array(contour)))
     pygame.display.update()
 
 
@@ -71,25 +66,23 @@ def init_screen(screen):
     # 显示图片作为背景,显示图片和坐标,划线设计布局
     screen.blit(background_image, (0, 0))
     # 标题
-    text(screen, (400, 20), "A real-time interactive and learning method for medical image segmentation", 18, (0, 0, 255))
+    text(screen, (400, 20), "An Efficient Interactive Segmentation Framework for Medical Images Without Pre-Training", 18, (0, 0, 255))
     # 设置控件
     pygame.draw.line(screen, (255, 0, 0), (0, 50), (800, 50), 1)
     pygame.draw.line(screen, (255, 0, 0), (600, 50), (600, 550), 1)
     pygame.draw.line(screen, (255, 0, 0), (0, 550), (800, 550), 1)
     screen.blit(button_image, (BUTTON_X, BUTTON_Y))  # 650,110
-    text(screen, (BUTTON_X + 50, BUTTON_Y + 40), "选择示例", 14, (139, 136, 120))  # 700,150
+    text(screen, (BUTTON_X + 50, BUTTON_Y + 40), "Example", 14, (139, 136, 120))  # 700,150
     screen.blit(button_image, (BUTTON_X, BUTTON_Y + 50))
-    text(screen, (BUTTON_X + 50, BUTTON_Y + 90), "打开图片", 14, (139, 136, 120))
+    text(screen, (BUTTON_X + 50, BUTTON_Y + 90), "Open", 14, (139, 136, 120))
     screen.blit(button_image, (BUTTON_X, BUTTON_Y + 100))
-    text(screen, (BUTTON_X + 50, BUTTON_Y + 140), "撤销点击", 14, (139, 136, 120))
+    text(screen, (BUTTON_X + 50, BUTTON_Y + 140), "Withdraw", 14, (139, 136, 120))
     screen.blit(button_image, (BUTTON_X, BUTTON_Y + 150))
-    text(screen, (BUTTON_X + 50, BUTTON_Y + 190), "完成点击", 14, (139, 136, 120))
+    text(screen, (BUTTON_X + 50, BUTTON_Y + 190), "Done", 14, (139, 136, 120))
     screen.blit(button_image, (BUTTON_X, BUTTON_Y + 200))
-    text(screen, (BUTTON_X + 50, BUTTON_Y + 240), "完成分割", 14, (0, 255, 0))
-    screen.blit(button_image, (650, 360))
-    text(screen, (BUTTON_X + 50, BUTTON_Y + 290), "GrabGCN", 14, (255, 0, 0))
+    text(screen, (BUTTON_X + 50, BUTTON_Y + 240), "Finish", 14, (0, 255, 0))
     # 设置图片区域
-    text(screen, (300, 300), "图片区域", 40, (139, 136, 120))
+    text(screen, (300, 300), "Image", 40, (139, 136, 120))
 
 
 def show_seg(img, points):
